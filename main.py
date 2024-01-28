@@ -60,8 +60,18 @@ ball=Ball()
 while game_is_on:
     #llamamos a la funcion que controla el movimiento de la pelota
     ball.movement()
-
-
+    
+        
+    if ball.ycor() > 280 or ball.ycor() < -275:
+        # Desactiva la animación automática
+        screen.tracer(0)
+        
+        #TODO:DETECT COLLISION WITH THE WALL
+        ball.change_direction()
+        
+        screen.tracer(1)
+        
+        #TODO:DETECT COLLISION WITH PADDLE
 
 # Permite que el programa continúe ejecutándose hasta que hagamos clic en la pantalla
 # Cierra la ventana al hacer clic en la pantalla

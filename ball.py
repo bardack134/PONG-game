@@ -1,4 +1,7 @@
+import random
 from turtle import Turtle
+
+BALL_MOVEMENT = [45, -45]
 
 class Ball(Turtle):
     
@@ -12,10 +15,18 @@ class Ball(Turtle):
         
         self.penup()
         
+              
         #TODO: Cambiar despues para que la posicion en la que empiezaq la pelota sea aleatoria
-        self.setheading(45)
-        
+        self.setheading(random.choice(BALL_MOVEMENT))
+        # self.setheading(-45)
+         
         self.speed('slowest')
         
     def movement(self):
         self.forward(10)  
+        
+    
+    def change_direction(self):
+        heading=self.heading() 
+        self.setheading(-1*int(heading))    
+        self.forward(10)
