@@ -4,6 +4,8 @@ from turtle import Turtle, Screen
 # Importa la clase Paddle del módulo my_paddle
 from my_paddle import Paddle
 
+from ball import Ball
+
 # Crea un objeto de la clase Screen
 screen = Screen()
 
@@ -25,7 +27,8 @@ paddle_right = Paddle(position_x=350)
 # Crea un objeto de la clase Paddle para el paddle izquierdo en la posición x=-350
 paddle_left = Paddle(position_x=-350)
 
-# Actualiza la pantalla para mostrar los objetos paddle_right y paddle_left
+
+# # Actualiza la pantalla para mostrar los objetos paddle_right y paddle_left
 screen.update()
 
 # Reactiva la animación automática
@@ -48,6 +51,24 @@ screen.onkey(paddle_left.paddle_movement_up, "w")
 # Cuando se presiona la tecla "s", se llama al método paddle_movement_down del objeto paddle_left
 screen.onkey(paddle_left.paddle_movement_down, "s")
 
+game_is_on=True
+
+#creamos objeto de la clase ball
+ball=Ball()
+
+
+while game_is_on:
+    #llamamos a la funcion que controla el movimiento de la pelota
+    ball.movement()
+
+
+
 # Permite que el programa continúe ejecutándose hasta que hagamos clic en la pantalla
 # Cierra la ventana al hacer clic en la pantalla
 screen.exitonclick()
+
+
+
+    
+    
+    
