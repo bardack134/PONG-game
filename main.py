@@ -53,6 +53,7 @@ screen.onkey(paddle_left.paddle_movement_down, "s")
 
 game_is_on=True
 
+
 #creamos objeto de la clase ball
 ball=Ball()
 
@@ -61,6 +62,7 @@ while game_is_on:
     #llamamos a la funcion que controla el movimiento de la pelota
     ball.movement()
     
+    # print(ball.xcor())
         
     if ball.ycor() > 280 or ball.ycor() < -275:
         # Desactiva la animación automática
@@ -71,7 +73,27 @@ while game_is_on:
         
         screen.tracer(1)
         
-        #TODO:DETECT COLLISION WITH PADDLE
+    #TODO:DETECT COLLISION WITH BOTH PADDLES
+    #distance() mide la distancia de mi ball hasta el centro de la paddle
+    if ball.xcor() > 320 and ball.distance(paddle_right)<80 or ball.xcor() < -320 and ball.distance(paddle_left)<80:
+        
+        # Desactiva la animación automática
+        screen.tracer(0)
+        
+        print(ball.heading())
+        
+        #TODO:DETECT COLLISION WITH THE WALL
+        ball.change_direction_2()
+        
+        print(ball.heading())
+        
+        screen.tracer(1)
+        
+        print("toch el left_paddle")
+        
+        
+    
+    
 
 # Permite que el programa continúe ejecutándose hasta que hagamos clic en la pantalla
 # Cierra la ventana al hacer clic en la pantalla
