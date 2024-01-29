@@ -56,51 +56,60 @@ game_is_on=True
 
 #creamos objeto de la clase ball
 ball=Ball()
+screen.tracer(1)
 
-
-while game_is_on:
+while game_is_on:  
     #llamamos a la funcion que controla el movimiento de la pelota
-    ball.movement()
+    ball.movement() 
     
-    # print(ball.xcor())
+    #TODO:DETECT COLLISION WITH THE WALL
+    # Si la bola choca con la parte superior o inferior de la pantalla.    
+    if ball.ycor() > 280 or ball.ycor() < -275:  
         
-    if ball.ycor() > 280 or ball.ycor() < -275:
-        # Desactiva la animación automática
-        screen.tracer(0)
+        # Desactiva la animación automática para evitar parpadeos.
+        screen.tracer(0) 
         
-        #TODO:DETECT COLLISION WITH THE WALL
-        ball.change_direction()
         
-        screen.tracer(1)
+        # Cambia la dirección de la bola cuando choca con la pared.
+        ball.change_direction()  
+        
+        # Reactiva la animación automática.
+        screen.tracer(1)  
         
     #TODO:DETECT COLLISION WITH BOTH PADDLES
     #distance() mide la distancia de mi ball hasta el centro de la paddle
-    if ball.xcor() > 320 and ball.distance(paddle_right)<80 or ball.xcor() < -320 and ball.distance(paddle_left)<80:
+    # Si la bola choca con alguna de las paletas.
+    if ball.xcor() > 320 and ball.distance(paddle_right)<60 or ball.xcor() < -320 and ball.distance(paddle_left)<60:  
         
-        # Desactiva la animación automática
-        screen.tracer(0)
+        # Desactiva la animación automática para evitar parpadeos.
+        screen.tracer(0) 
+             
         
-        print(ball.heading())
+        # Cambia la dirección de la bola cuando choca con una paleta.
+        ball.change_direction_2() 
         
-        #TODO:DETECT COLLISION WITH THE WALL
-        ball.change_direction_2()
+        # Reactiva la animación automática.
+        screen.tracer(1) 
         
-        print(ball.heading())
-        
-        screen.tracer(1)
-        
-        print("toch el left_paddle")
-        
-        
+        print(ball.pos())
+        print(ball.distance(paddle_right))
     
-    
-
-# Permite que el programa continúe ejecutándose hasta que hagamos clic en la pantalla
-# Cierra la ventana al hacer clic en la pantalla
-screen.exitonclick()
-
-
-
-    
-    
-    
+    #TODO: DETECT WHEN THE PADDLE MISS THE BALL    
+    # Si la bola se sale de la pantalla por los lados.    
+    elif ball.xcor() > 330 or ball.xcor() < -330: 
+        
+        # Imprime un mensaje indicando que el oponente recibe un punto.
+        print("the ball didn't hit the paddle, the opponet recibe 1 point")
+        print(ball.pos())
+        print(ball.distance(paddle_right))
+        # Resetea la posición de la bola.
+        ball.reset() 
+        
+        # Desactiva la animación automática para evitar parpadeos. 
+        screen.tracer(0)  
+        
+        # Crea una nueva bola.
+        ball=Ball()  
+        
+        # Reactiva la animación automática.
+        screen.tracer(1)  

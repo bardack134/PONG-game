@@ -2,7 +2,7 @@ import random
 from turtle import Turtle
 # Define los ángulos de movimiento posibles para la bola.
 BALL_MOVEMENT = [45, -45, 135, 225]
-# BALL_MOVEMENT = [225]  #esta linea es para pruebas
+# BALL_MOVEMENT = [45]  #esta linea es para pruebas
 
 class Ball(Turtle):
     
@@ -15,7 +15,6 @@ class Ball(Turtle):
         
         self.penup()  # Levanta el lápiz para que no se dibuje una línea cuando la bola se mueve.
         
-        #TODO: Cambiar despues para que la posicion en la que empiezaq la pelota sea aleatoria
         self.setheading(random.choice(BALL_MOVEMENT))  # Establece la dirección inicial de la bola a un ángulo aleatorio.
         # self.setheading(-45)
          

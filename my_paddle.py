@@ -36,4 +36,4 @@ class Paddle(Turtle):
     # Define un método para mover la paleta hacia abajo
     def paddle_movement_down(self):
         # Mueve la paleta hacia abajo
-        self.backward(10)
+        self.backward(20)
