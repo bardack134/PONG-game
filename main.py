@@ -6,6 +6,7 @@ from my_paddle import Paddle
 
 from ball import Ball
 
+from my_score import Score
 # Crea un objeto de la clase Screen
 screen = Screen()
 
@@ -26,6 +27,9 @@ paddle_right = Paddle(position_x=350)
 
 # Crea un objeto de la clase Paddle para el paddle izquierdo en la posición x=-350
 paddle_left = Paddle(position_x=-350)
+
+#creamos objeto de la clase ball
+ball=Ball()
 
 
 # # Actualiza la pantalla para mostrar los objetos paddle_right y paddle_left
@@ -54,9 +58,17 @@ screen.onkey(paddle_left.paddle_movement_down, "s")
 game_is_on=True
 
 
-#creamos objeto de la clase ball
-ball=Ball()
+
 screen.tracer(1)
+
+#TODO Crear la clase score que herede de turtle, para registrar los puntajes de los jugadores
+
+#Nuestra clase score recibe como parametro la posicionx y posiciony del objeto turtle
+score_left=Score(-100,230)
+
+score_right=Score(100,230)
+
+
 
 while game_is_on:  
     #llamamos a la funcion que controla el movimiento de la pelota
@@ -94,14 +106,24 @@ while game_is_on:
         print(ball.pos())
         print(ball.distance(paddle_right))
     
-    #TODO: DETECT WHEN THE PADDLE MISS THE BALL    
+    #TODO: DETECTAR CUANDO LA BOLA NO TOCA LA RAQUETA Y SE VA POR LOS LADOS    
     # Si la bola se sale de la pantalla por los lados.    
-    elif ball.xcor() > 330 or ball.xcor() < -330: 
+    elif ball.xcor() > 330:
+        # Desactiva la animación automática para evitar parpadeos.
+        screen.tracer(0) 
         
-        # Imprime un mensaje indicando que el oponente recibe un punto.
-        print("the ball didn't hit the paddle, the opponet recibe 1 point")
-        print(ball.pos())
-        print(ball.distance(paddle_right))
+        #OTRA FORMA DE RESETAR LA PELOTA EN EL CENTRO CUANDO  LA RAQUETA NO GOLPEA LA PELOTA Y SE SALE POR LOS LADOS
+        ball.reset_position()
+        
+        score_right.add_score()
+        
+        # Reactiva la animación automática.
+        screen.tracer(1)  
+    
+    elif ball.xcor() < -330: 
+        #OTRA FORMA DE RESETAR LA PELOTA EN EL CENTRO CUANDO  LA RAQUETA NO GOLPEA LA PELOTA Y SE SALE POR LOS LADOS
+        
+        
         # Resetea la posición de la bola.
         ball.reset() 
         
@@ -110,6 +132,6 @@ while game_is_on:
         
         # Crea una nueva bola.
         ball=Ball()  
-        
+        score_left.add_score()
         # Reactiva la animación automática.
         screen.tracer(1)  

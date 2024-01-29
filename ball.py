@@ -1,7 +1,8 @@
 import random
 from turtle import Turtle
 # Define los ángulos de movimiento posibles para la bola.
-BALL_MOVEMENT = [45, -45, 135, 225]
+BALL_MOVEMENT_RIGHT = [45,  -45]
+BALL_MOVEMENT_LEFT = [135,  225]
 # BALL_MOVEMENT = [45]  #esta linea es para pruebas
 
 class Ball(Turtle):
@@ -15,8 +16,10 @@ class Ball(Turtle):
         
         self.penup()  # Levanta el lápiz para que no se dibuje una línea cuando la bola se mueve.
         
-        self.setheading(random.choice(BALL_MOVEMENT))  # Establece la dirección inicial de la bola a un ángulo aleatorio.
+        self.setheading(random.choice(BALL_MOVEMENT_RIGHT))  # Establece la dirección inicial de la bola a un ángulo aleatorio.
         # self.setheading(-45)
+         
+        print(self.heading()) 
          
         self.speed('slowest')  # Establece la velocidad de la bola a la más lenta.
         
@@ -70,3 +73,18 @@ class Ball(Turtle):
             self.forward(10)  # Mueve la bola hacia adelante en su nueva dirección.
             
     
+    def reset_position(self):
+        # Establece la velocidad de la tortuga como la más rápida para ocultarla y moverla rápidamente
+        self.speed('fastest')
+        # Oculta la tortuga temporalmente mientras se mueve a la posición inicial
+        self.hideturtle()
+        # Mueve la tortuga a la posición (0, 0)
+        self.goto(0, 0)
+        # Muestra la tortuga después de moverla a la posición inicial
+        self.showturtle()
+        # Establece la velocidad de la tortuga como la más lenta para mostrar el movimiento suavemente
+        self.speed('slowest')
+        
+        self.setheading(random.choice(BALL_MOVEMENT_LEFT))
+        
+        print(self.heading()) 
