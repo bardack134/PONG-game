@@ -3,6 +3,7 @@ from turtle import Turtle
 # Constantes que definen características del programa como tipo de letra y tamaño de letra.
 # Se colocan aquí por si se desean modificar en el futuro sin tener que buscarlas dentro del código.
 ALIGMENT = 'center'  # Alineación del texto en el centro.
+
 FONT = ('Courier', 42, 'bold')  # Tipo de fuente, tamaño y estilo del texto.
 
 class Score(Turtle):
@@ -47,3 +48,17 @@ class Score(Turtle):
         
         # Actualiza el marcador en la pantalla.
         self.update_scoreboard()  
+    
+    #funcion de findel juego y muestra mensaje indicando el ganador    
+    def end_game(self, position_x, position_y, winner):
+        
+             
+        # Establece la posición inicial de la tortuga.
+        self.setposition(position_x, position_y)  
+         
+
+        # Color del texto.
+        self.color('white') 
+        
+        # Escribe el ganador del juego en la pantalla, el jugador se pasa como parametro 'winner' utilizando la fuente y alineación definidas.
+        self.write(f"{winner} is the winner", False, align=ALIGMENT, font=('Courier', 20, 'bold'))  

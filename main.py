@@ -69,10 +69,12 @@ score_left=Score(-100,230)
 score_right=Score(100,230)
 
 
+print(f'la velocidad inciial es {ball.speedy}')
 
 while game_is_on:  
     #llamamos a la funcion que controla el movimiento de la pelota
     ball.movement() 
+    
     
     #TODO:DETECT COLLISION WITH THE WALL
     # Si la bola choca con la parte superior o inferior de la pantalla.    
@@ -88,9 +90,9 @@ while game_is_on:
         # Reactiva la animación automática.
         screen.tracer(1)  
         
-    #TODO:DETECT COLLISION WITH BOTH PADDLES
+    #TODO:DETECTAR EL CHOQUE DE LA PELOTA CON LAS RAQUETAS
     #distance() mide la distancia de mi ball hasta el centro de la paddle
-    # Si la bola choca con alguna de las paletas.
+  
     if ball.xcor() > 320 and ball.distance(paddle_right)<60 or ball.xcor() < -320 and ball.distance(paddle_left)<60:  
         
         # Desactiva la animación automática para evitar parpadeos.
@@ -103,8 +105,13 @@ while game_is_on:
         # Reactiva la animación automática.
         screen.tracer(1) 
         
-        print(ball.pos())
-        print(ball.distance(paddle_right))
+        #funcion que aumenta la velocidad de la ball
+        ball.increase_speedy()
+        
+        print(f'la velocidad actual es {ball.speedy}')
+        # print(ball.pos())
+        # print(ball.distance(paddle_right))
+    
     
     #TODO: DETECTAR CUANDO LA BOLA NO TOCA LA RAQUETA Y SE VA POR LOS LADOS    
     # Si la bola se sale de la pantalla por los lados.    
@@ -115,10 +122,12 @@ while game_is_on:
         #OTRA FORMA DE RESETAR LA PELOTA EN EL CENTRO CUANDO  LA RAQUETA NO GOLPEA LA PELOTA Y SE SALE POR LOS LADOS
         ball.reset_position()
         
-        score_right.add_score()
+        #si la ball se sale por la derecha el jugador de la izq anota un punto
+        score_left.add_score() 
         
         # Reactiva la animación automática.
         screen.tracer(1)  
+    
     
     elif ball.xcor() < -330: 
         #OTRA FORMA DE RESETAR LA PELOTA EN EL CENTRO CUANDO  LA RAQUETA NO GOLPEA LA PELOTA Y SE SALE POR LOS LADOS
@@ -132,6 +141,43 @@ while game_is_on:
         
         # Crea una nueva bola.
         ball=Ball()  
-        score_left.add_score()
+        
+        #si la ball se sale por la izq el jugador de la derecha anota un punto
+        score_right.add_score()
         # Reactiva la animación automática.
         screen.tracer(1)  
+    
+    
+    #TODO: ESCOGEMOS GANADOR, EL PRIMER JUGADOR EN COMPLETAR 100 PUNTOS GANA    
+    if score_left.score ==100:
+        
+        #la clase ball hereda de la clase turtle, por lo que usando la funcion hideturtle escondemos la ball
+        ball.hideturtle()
+        
+        #mostramos un msj indicando que el jugador de la izq ha ganado
+        score_left.end_game(0, 0,  winner= 'left player')
+        
+        #se finaliza el juego al haber un ganador
+        game_is_on=False
+        
+    elif score_right.score ==100:
+        
+        #la clase ball hereda de la clase turtle, por lo que usando la funcion hideturtle escondemos la ball
+        ball.hideturtle()
+        
+        #mostramos un msj indicando que el jugador de la izq ha ganado
+        score_right.end_game(0, 0,  winner= 'right player')
+        
+        #se finaliza el juego al haber un ganador
+        game_is_on=False
+    
+    
+    
+    
+
+
+
+# Permite que el programa continue corriendo hasta que hagamos click en la pantalla , debemos crear un objeto de la clase Screen() para usar el metodo exitonclick()
+# Debe ir al final de nuestro codigo
+# Cierra la ventana al hacer click en la pantalla
+screen.exitonclick()    

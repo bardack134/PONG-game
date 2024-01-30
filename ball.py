@@ -21,11 +21,18 @@ class Ball(Turtle):
          
         print(self.heading()) 
          
-        self.speed('slowest')  # Establece la velocidad de la bola a la más lenta.
+        self.speed('normal')  # Establece la velocidad de la bola a la más lenta.
         
+        self.speedy=2 #variable que determina la velocidad de la bola
     def movement(self):
-        self.forward(10)  # Mueve la bola hacia adelante en su dirección actual.
+        self.forward(self.speedy)# Mueve la bola hacia adelante en su dirección actual y define la velocidad de movimiento de la bola  
         
+    
+    #funcion que aumenta la velocidad de la ball
+    def increase_speedy(self):
+        self.speedy += 1 #aumentamos la velocidad de la ball en 1 
+        
+        self.forward(self.speedy)
         
     #cambia la direccion de la ball cuando esta choca la pared
     # x ejemplo el angulo de rebote seria -45, si choco con la pared con un angulo de 45
@@ -76,15 +83,24 @@ class Ball(Turtle):
     def reset_position(self):
         # Establece la velocidad de la tortuga como la más rápida para ocultarla y moverla rápidamente
         self.speed('fastest')
+        
         # Oculta la tortuga temporalmente mientras se mueve a la posición inicial
         self.hideturtle()
+        
         # Mueve la tortuga a la posición (0, 0)
         self.goto(0, 0)
+        
         # Muestra la tortuga después de moverla a la posición inicial
         self.showturtle()
+        
         # Establece la velocidad de la tortuga como la más lenta para mostrar el movimiento suavemente
         self.speed('slowest')
         
-        self.setheading(random.choice(BALL_MOVEMENT_LEFT))
+        #Cuando la bola sale del lado derecho del jugador y se reinicia en la posición (0, 0), quiero que la bola comience en
+        # dirección contraria es decir hacia el jugador de la izq"
+        self.setheading(random.choice(BALL_MOVEMENT_LEFT))  
+        
+        
+        
         
         print(self.heading()) 
