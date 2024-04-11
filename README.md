@@ -21,7 +21,7 @@ This Python script implements the classic Pong game using the Turtle module for 
 - Incorporated ball physics for realistic movement and collision detection.
 - Added score tracking functionality for each player.
 - Implemented a win condition where the game ends when one player reaches a score of 100.
-- Enhanced understanding of Python programming concepts, including object-oriented programming, event handling, and game development principles.
+- put into practice and improve Python programming concepts, including object-oriented programming, event handling, and game development principles.
 
   
 ## Images
