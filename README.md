@@ -12,7 +12,7 @@ This Python script implements the classic Pong game using the Turtle module for 
 
 ## Tools Used
 - Python
-- Turtle module
+- Turtle module = Used for graphics and animation.
 
 ## Results and Achievements
 - Developed a fully functional Pong game using Python.
